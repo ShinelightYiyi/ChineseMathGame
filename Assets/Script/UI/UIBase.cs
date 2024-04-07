@@ -76,6 +76,18 @@ public class UIMethod
         return go;
     }
 
+
+    public GameObject FindChangeCanvas()
+    {
+        GameObject go = GameObject.FindGameObjectWithTag("ChangeCanvas");
+        GameObject.DontDestroyOnLoad(go);
+        if (go == null)
+        {
+            Debug.LogWarning("获取Canvas失败");
+        }
+        return go;
+    }
+
     /// <summary>
     /// 获取物体子物体
     /// </summary>
@@ -111,8 +123,9 @@ public class UIMethod
         }
         else
         {
-            Debug.LogError("未找到指定组件：" + typeof(T).Name);
-            return null;
+            T newComponent = go.AddComponent<T>();
+          //  Debug.LogError("未找到指定组件：" + typeof(T).Name);
+            return newComponent;
         }
     }
 
@@ -160,6 +173,13 @@ public class UIManager
 
     public GameObject canvasObj;
 
+    public UIManager()
+    {
+        uiObjectDic = new Dictionary<string, GameObject>();
+        uiStack = new Stack<BasePanel>();
+    }
+        
+
     public GameObject GetSingleObject(UIType uiType)
     {
         //从本地加载物体  
@@ -171,8 +191,10 @@ public class UIManager
 
         if (canvasObj == null)
         {
-            canvasObj = UIMethod.Instance.FindCanvas();
+                canvasObj = UIMethod.Instance.FindCanvas();         
         }
+
+
         //若Canvas为空，则结束函数  
 
         GameObject gameObject = GameObject.Instantiate<GameObject>(Resources.Load<GameObject>(uiType.Path), canvasObj.transform);
@@ -193,7 +215,7 @@ public class UIManager
         GameObject uiObject = GetSingleObject(basePanel.uiType);
     //获取UI并传入实际的物体当中
 
-    uiObjectDic.Add(basePanel.uiType.Name, uiObject);
+        uiObjectDic.Add(basePanel.uiType.Name, uiObject);
 
         basePanel.activeObject = uiObject;
 
@@ -208,6 +230,25 @@ public class UIManager
                 uiStack.Push(basePanel);
             }
         }
+        basePanel.OnStart();
+    }
+
+
+    /// <summary>
+    /// 切换场景时使用
+    /// </summary>
+    /// <param name="basePanel"></param>
+    public void PushChangeScene(BasePanel basePanel)
+    {
+
+        GameObject canvasObj = GameObject.FindGameObjectWithTag("ChangeCanvas");
+
+        GameObject.DontDestroyOnLoad(canvasObj);
+
+        GameObject uiObject = GameObject.Instantiate<GameObject>(Resources.Load<GameObject>(basePanel.uiType.Path), canvasObj.transform);
+
+        basePanel.activeObject = uiObject;
+
         basePanel.OnStart();
     }
 
