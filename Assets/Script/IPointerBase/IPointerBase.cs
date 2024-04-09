@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public abstract class PointBase : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler,IDragHandler,IInitializePotentialDragHandler,IBeginDragHandler,IEndDragHandler,IDropHandler
+public abstract class IPointBase : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler,IDragHandler,IInitializePotentialDragHandler,IBeginDragHandler,IEndDragHandler,IDropHandler,IPointerUpHandler
 {
     //点击
     public void OnPointerClick(PointerEventData eventData)
@@ -14,6 +14,10 @@ public abstract class PointBase : MonoBehaviour, IPointerClickHandler, IPointerE
         Click();
     }
 
+
+    /// <summary>
+    /// 点击接口
+    /// </summary>
     public virtual void Click()
     {
         Debug.Log("点击");
@@ -24,6 +28,10 @@ public abstract class PointBase : MonoBehaviour, IPointerClickHandler, IPointerE
     {
         Enter();
     }
+
+    /// <summary>
+    /// 鼠标进入接口
+    /// </summary>
     public virtual void Enter()
     {
         Debug.Log("进入区域");
@@ -33,6 +41,10 @@ public abstract class PointBase : MonoBehaviour, IPointerClickHandler, IPointerE
     {
         Exit();
     }
+
+    /// <summary>
+    /// 鼠标离开接口
+    /// </summary>
     public virtual void Exit()
     {
         Debug.Log("离开区域");
@@ -43,6 +55,10 @@ public abstract class PointBase : MonoBehaviour, IPointerClickHandler, IPointerE
         DownAndDrag();
     }
 
+
+    /// <summary>
+    /// 拖拽接口
+    /// </summary>
     public virtual void DownAndDrag()
     {
         Debug.Log("点击并且拖拽"+ name);
@@ -53,6 +69,9 @@ public abstract class PointBase : MonoBehaviour, IPointerClickHandler, IPointerE
         Down();
     }
 
+    /// <summary>
+    /// 按下接口
+    /// </summary>
     public virtual void Down()
     {
         Debug.Log("点击"+ name);
@@ -63,6 +82,10 @@ public abstract class PointBase : MonoBehaviour, IPointerClickHandler, IPointerE
         EndDrag();
     }
 
+
+    /// <summary>
+    /// 鼠标抬起
+    /// </summary>
     public virtual void EndDrag()
     {
         Debug.Log("抬起"+ name);
@@ -74,6 +97,11 @@ public abstract class PointBase : MonoBehaviour, IPointerClickHandler, IPointerE
         BeginDrag();
     }
 
+
+
+    /// <summary>
+    /// 拖拽
+    /// </summary>
     public virtual void BeginDrag()
     {
         Debug.Log("点击并且开始拖拽"+ name);
@@ -86,8 +114,25 @@ public abstract class PointBase : MonoBehaviour, IPointerClickHandler, IPointerE
         Debug.Log(eventData.pointerDrag.name + "作用对象：" + name);
     }
 
+    /// <summary>
+    /// 拖拽后放置
+    /// </summary>
     public virtual void DropTo()
     {
         Debug.Log("点击拖拽并放置" + name);
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        UpTo();
+    }
+
+
+    /// <summary>
+    /// 鼠标抬起
+    /// </summary>
+    public virtual void UpTo()
+    {
+        Debug.Log("鼠标抬起");
     }
 }
