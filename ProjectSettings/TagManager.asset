@@ -8,6 +8,9 @@ TagManager:
   - ChangePanel
   - PanelA
   - ChangeCanvas
+  - images
+  - images2
+  - images3
   layers:
   - Default
   - TransparentFX
