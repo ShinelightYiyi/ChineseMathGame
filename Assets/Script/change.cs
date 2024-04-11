@@ -9,10 +9,37 @@ using UnityEngine.EventSystems;
 /// this is an class witch inherit from PointBase.
 /// it should attached with the imageobject.
 /// </summary>
-public class change : PointBase
+public class Change : IPointBase
 {
-    public static int isclick = 0;
-    // Start is called before the first frame update
+    private int isclick = 1;
+    private Animator ani;
+
+    private void Awake()
+    {
+        ani = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        switch (isclick)
+        {
+            case 1:
+                ani.SetBool("ToFriend", true);
+                ani.SetBool("ToFamily", false);
+                ani.SetBool("ToStudy", false);
+                break;
+            case 2:
+                ani.SetBool("ToFriend", false);
+                ani.SetBool("ToFamily", true);
+                ani.SetBool("ToStudy", false);
+                break;
+            case 3:
+                ani.SetBool("ToFriend", false);
+                ani.SetBool("ToFamily", false);
+                ani.SetBool("ToStudy", true);
+                break;
+        }
+    }
     public override void Click()
     {
         base.Click();
@@ -24,17 +51,14 @@ public class change : PointBase
     /// </summary>
     public void imagechange0()
     {
-        Image image = GetComponent<Image>();
-        imagechange obj = new Onimagechange();
-
-        obj.OnImageChange(image);
         isclick++;
-        // if u click the image,this variable will increase and there will be some logic judge in ChangeControllor
+        if(isclick > 3)
+        {
+            isclick = 1;
+        }
+        Debug.Log("´«³ö"+gameObject.name);
+        EventCenter.Instance.EventTrigger<int>(gameObject.name , isclick);
     }
 }
 
-//the interface about imagechange, we can modify this interface to change the pointevent;
-interface imagechange
-{
-    void OnImageChange(Image image);
-}
+
