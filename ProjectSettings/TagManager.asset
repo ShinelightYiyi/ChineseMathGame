@@ -8,14 +8,22 @@ TagManager:
   - ChangePanel
   - PanelA
   - ChangeCanvas
-  - images
-  - images2
-  - images3
+  - PenPanel
+  - "\u5DE6"
+  - "\u4E2D"
+  - "\u53F3"
+  - left
+  - middle
+  - right
+  - MathPanel
+  - Lights
+  - Music
+  - Sound
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - BackGround
   - Water
   - UI
   - 

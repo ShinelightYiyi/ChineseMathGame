@@ -21,9 +21,14 @@ public class AudioMag
         GameObject go = GameObject.FindGameObjectWithTag("Sound");
         AudioSource aui = go.GetComponent<AudioSource>();
         AudioClip clip = Resources.Load<AudioClip>(Path);
-        aui.clip = clip;
-        aui.PlayOneShot(aui.clip);
+        if(clip == null)
+        {
+            Debug.LogError("Пе");
+        }
+      //  aui.clip = clip;
+        aui.PlayOneShot(clip);
     }
+
 
     public void Stop(string Path)
     {

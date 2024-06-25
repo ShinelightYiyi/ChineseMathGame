@@ -67,6 +67,7 @@ public class SceneController
         while(!async.isDone)
         {
             EventCenter.Instance.EventTrigger<float>("进度加载", 1f);
+            Debug.Log("切换完成");
             if(disProgress >=0.9f)
             {
                 async.allowSceneActivation = true;

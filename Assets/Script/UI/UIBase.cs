@@ -252,6 +252,11 @@ public class UIManager
         basePanel.OnStart();
     }
 
+    public void Clear()
+    {
+        uiStack.Clear();
+    }
+
     public void Pop(bool isLoad)
     {
         if (isLoad)

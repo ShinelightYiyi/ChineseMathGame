@@ -7,6 +7,8 @@ public class MonoMar : MonoBehaviour
 {
     private static UnityAction updateEvent;
 
+
+
     private void Start()
     {
         DontDestroyOnLoad(this.gameObject);    
@@ -19,6 +21,7 @@ public class MonoMar : MonoBehaviour
             updateEvent();
         }
     }
+
 
 
     public void AddUpdateListener(UnityAction action)

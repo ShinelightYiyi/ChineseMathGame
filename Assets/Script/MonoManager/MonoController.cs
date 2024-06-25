@@ -49,4 +49,8 @@ public class MonoController
         return controller.StartCoroutine(methodName);
     }
 
+    public void Clear()
+    {
+        controller.Clear();
+    }
 }
