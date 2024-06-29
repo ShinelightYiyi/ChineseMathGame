@@ -19,6 +19,9 @@ TagManager:
   - Lights
   - Music
   - Sound
+  - 1
+  - 2
+  - 3
   layers:
   - Default
   - TransparentFX
