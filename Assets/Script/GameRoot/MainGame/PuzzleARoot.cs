@@ -93,10 +93,20 @@ public class PuzzleARoot : MonoBehaviour
             if (gameObjects[0].tag == "2" && gameObjects[1].tag == "3" && gameObjects[2].tag == "1")
             {
                 Debug.LogWarning("³É¹¦");
+                EventCenter.Instance.Clear();
+                Invoke("PushNextPanel", 0.5f);
+             
                 isFinish = true;
             }
         }
     }
+
+    private void PushNextPanel()
+    {
+        UIManager.Instance.Push(new BookPanelB());
+       // AudioMag.Instance.PlayOneShot("Audio/MainGame/MainGame_TurnPage");
+    }
+
 
 
     private void ChangeClick()

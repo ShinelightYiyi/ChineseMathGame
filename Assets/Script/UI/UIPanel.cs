@@ -4,6 +4,21 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 
+public class BookPanelB : BasePanel
+{
+    private static string name = "NextBookPanel";
+    private static string path = "UIPanel/MainGame/NextBookPanel";
+
+    private static UIType newUIType = new UIType(name, path);
+    public BookPanelB() : base(newUIType)
+    {
+
+    }
+}
+
+
+
+
 
 public class ChangeScenePanel : BasePanel
 {

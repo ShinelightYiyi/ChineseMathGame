@@ -24,5 +24,6 @@ public class StartGamePoint : IPointBase
     {
         base.Down();
         EventCenter.Instance.EventTrigger("¿ªÊ¼ÓÎÏ·");
+        AudioMag.Instance.PlayOneShot("Audio/MainGame/MainGame_TurnPage");
     }
 }

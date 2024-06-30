@@ -13,7 +13,6 @@ public class MainGameRoot : MonoBehaviour
     float timer = 0;
     private void Start()
     {
-
         EventCenter.Instance.AddEventListener("¿ªÊ¼ÓÎÏ·", () => StartGame());
     }
 
@@ -47,6 +46,8 @@ public class MainGameRoot : MonoBehaviour
         Book.SetActive(false);
         UIManager.Instance.Push(new BookPanel());
     }
+
+
 
 
 

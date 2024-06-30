@@ -46,6 +46,7 @@ public class PenHeadController : IPointBase
             isOnce=true;
         }
         EventCenter.Instance.EventTrigger(gameObject.name + "±»µã»÷");
+        AudioMag.Instance.PlayOneShot("Audio/MainGame/Card");
     }
 
     private void ChangePosition()

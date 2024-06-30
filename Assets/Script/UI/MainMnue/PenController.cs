@@ -43,6 +43,7 @@ public class PenController : IPointBase
             index++;
         }
         EventCenter.Instance.EventTrigger<int>(gameObject.name, index);
+        AudioMag.Instance.PlayOneShot("Audio/MainMnue/MainMnue_Pen_2");
         base.Down();
     }
 
